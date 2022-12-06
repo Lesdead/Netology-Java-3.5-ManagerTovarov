@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ru"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ProductManager.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Syndrome</a> &gt; <a href="index.source.html" class="el_package">ru.netology.manager</a> &gt; <span class="el_source">ProductManager.java</span></div><h1>ProductManager.java</h1><pre class="source lang-java linenums">package ru.netology.manager;
+
+import ru.netology.repository.ProductRepository;
+import ru.netology.domain.Book;
+import ru.netology.domain.Product;
+import ru.netology.domain.Smartphone;
+
+public class ProductManager {
+    private ProductRepository repository;
+
+<span class="fc" id="L11">    public ProductManager(ProductRepository repository) {</span>
+<span class="fc" id="L12">        this.repository = repository;</span>
+<span class="fc" id="L13">    }</span>
+
+    public void add(Product product) {
+<span class="fc" id="L16">        repository.save(product);</span>
+<span class="fc" id="L17">    }</span>
+
+    public Product[] searchBy(String text) {
+<span class="fc" id="L20">        Product[] result = new Product[0];</span>
+<span class="fc" id="L21">        Product[] products = repository.findAll();</span>
+<span class="fc bfc" id="L22" title="All 2 branches covered.">        for (Product product : products) {</span>
+<span class="fc bfc" id="L23" title="All 2 branches covered.">            if (matches(product, text)) {</span>
+<span class="fc" id="L24">                Product[] tmp = new Product[result.length + 1];</span>
+<span class="fc" id="L25">                System.arraycopy(result, 0, tmp, 0, result.length);</span>
+<span class="fc" id="L26">                tmp[tmp.length - 1] = product;</span>
+<span class="fc" id="L27">                result = tmp;</span>
+            }
+        }
+<span class="fc" id="L30">        return result;</span>
+    }
+
+    public boolean matches(Product product, String search) {
+<span class="fc bfc" id="L34" title="All 2 branches covered.">        if (product instanceof Book) {</span>
+<span class="fc" id="L35">            Book book = (Book) product;</span>
+<span class="fc bfc" id="L36" title="All 2 branches covered.">            if (book.getAuthor().contains(search)) {</span>
+<span class="fc" id="L37">                return true;</span>
+            }
+<span class="fc bfc" id="L39" title="All 2 branches covered.">            if (book.getName().contains(search)) {</span>
+<span class="fc" id="L40">                return true;</span>
+            }
+<span class="fc" id="L42">            return false;</span>
+        }
+<span class="fc bfc" id="L44" title="All 2 branches covered.">        if (product instanceof Smartphone) {</span>
+<span class="fc" id="L45">            Smartphone smartphone = (Smartphone) product;</span>
+<span class="fc bfc" id="L46" title="All 2 branches covered.">            if (smartphone.getCompany().contains(search)) {</span>
+<span class="fc" id="L47">                return true;</span>
+            }
+<span class="fc bfc" id="L49" title="All 2 branches covered.">            if (smartphone.getName().contains(search)) {</span>
+<span class="fc" id="L50">                return true;</span>
+            }
+<span class="fc" id="L52">            return false;</span>
+        }
+<span class="fc" id="L54">        return false;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

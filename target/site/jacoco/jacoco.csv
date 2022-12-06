@@ -1,0 +1,6 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+Syndrome,ru.netology.domain,Smartphone,13,12,0,0,7,4,3,2,3,2
+Syndrome,ru.netology.domain,Book,7,12,0,0,4,4,2,2,2,2
+Syndrome,ru.netology.domain,Product,20,14,0,0,10,6,6,2,6,2
+Syndrome,ru.netology.repository,ProductRepository,0,41,0,0,0,10,0,3,0,3
+Syndrome,ru.netology.manager,ProductManager,0,109,0,16,0,29,0,12,0,4
